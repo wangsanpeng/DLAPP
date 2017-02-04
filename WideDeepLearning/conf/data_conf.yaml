@@ -1,0 +1,102 @@
+# define train and test files
+train_file: /Users/cheng/Data/tese_seller_discovery/data/ifashion_v2/ifashion_training_set
+evaluate_file: /Users/cheng/Data/tese_seller_discovery/data/ifashion_v2/ifashion_evaluation_set
+test_file: /Users/cheng/Data/tese_seller_discovery/data/ifashion_v2/ifashion_evaluation_set
+#test_file: /Users/cheng/Data/tese_seller_discovery/data/ifashion_v2/seller_full_features
+
+# --- Features
+target_column: label
+binary_columns:
+- is_active
+- is_yzdp
+- is_buy_wp_seller
+- has_decoration_pc
+- is_foreign
+- has_decoration_wireless
+- is_qualified_company_seller
+
+multi_category_columns: [seller_star_id, main_brand_id, industry_id]
+
+continuous_columns:
+- clt_byr_cnt_1m
+- rate_face_auc
+- new_fans_revisit_1m_ratio
+- new_fans_pay_amt_1m
+- new_sku_num
+- nonman_ratio
+- shuke_cnt_6m
+- neirong_ipv_uv_30d_avg
+- avg_width
+- prism_level
+- stay_time_len_pc_1m
+- new_fans_pay_amt_1m_ratio
+- avg_tra
+- onebody_ratio
+- oversea_item_count
+- avg_min_price_pvalue
+- avg_npx_score
+- yhh_item_cnt
+- avg_height
+- outer_inner_traffic_ratio
+- pay_ord_pbt_shuke_1m
+- rate_tongkuan_not_sf
+- pay_ord_amt_1y
+- nonnpx_item_ratio
+- main_cate_pay_amt_ratio_3m
+- pay_ord_amt_1m
+- male_ratio
+- main_brand_score
+- baokuan_itm_cnt_1m
+- avg_face_cnt
+- avg_trn
+- avg_mrq
+- pay_ord_pbt_1m
+- neirong_cnt_30d
+- pay_itm_rate_1m
+- all_dspt_rfd_rate_1m
+- dsr_zl
+- shuke_rate_6m
+- stay_time_len_wl_1m
+- face_image_ratio
+- trn_ratio
+- avg_mcn
+- dsr_wl
+- avg_ship_time_len_1m
+- weitao_sns_itct_cnt_1m_avg
+- weibo_followers_count
+- good_rate
+- raw_content_operation_score
+- pur_ratio
+- new_fans_uv_1m_ratio
+- sns_itct_cnt_1m_avg
+- cate_level1_num
+- taobao_inner_uv_3m
+- new_itm_num
+- dsr_fw
+- auc_shougong_cnt
+- outer_channel_score
+- avg_discount_ratio_1m
+- act_shop_attend_cnt_3m_b
+- num_transactions_1m
+- ads_chn_item_cnt
+- act_attent_tqg_cnt_3m
+- sel_zhekou
+- item_sku_avg
+- to_member_cnt
+- daotu_item_ratio
+- baokuan_item_ratio
+- member_cnt
+- shougong_div_pay_amt
+- clt_byr_cnt_std
+- title_coherence_score
+- brand_num
+- avg_p_value
+- haiwai_div_pay_amt
+- man_ratio
+- act_shop_attend_cnt_3m_a
+
+# feature crossing
+crossed_columns:
+
+# continuous feature bucketizing
+# bucketized_columns: {'weibo_followers_count':[1000,10000,100000,500000,1000000]}

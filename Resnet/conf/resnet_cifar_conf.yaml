@@ -1,0 +1,18 @@
+num_step: 100000
+leakiness: 0.01
+use_bottleneck: False
+num_residual_units: 5
+num_classes: 10
+batch_size: 128
+weight_decay_rate: 0.002
+lrn_rate: 0.1
+lr_decay_steps: 20000
+optimizer: 'sgd'
+
+
+dataset: cifar10
+data_path: /Users/cheng/Data/cifar10_data/cifar-10-batches-bin/
+train_dir: /Users/cheng/Data/cifar_model/cifar10/train_log
+mode: train
+eval_batch_count: 500
+model_path: /Users/cheng/Data/cifar_model/cifar10/model
