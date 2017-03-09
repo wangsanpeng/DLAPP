@@ -342,7 +342,6 @@ class BatchNormLayer(Layer):
         param_shape = x_shape[-1]
 
         from tensorflow.python.training import moving_averages
-        import tensorflow.contrib.slim as slim
 
         with tf.variable_scope(name) as scope:
             beta = tf.get_variable('beta', shape=param_shape, initializer=beta_init, trainable=is_train)
@@ -373,6 +372,9 @@ class BatchNormLayer(Layer):
         self.all_dropout = dict(layer.all_dropout)
         self.all_layers.extend([self.outputs])
         self.all_params.extend([beta, gamma, global_mean, global_var])
+
+
+
 
 
 if __name__ == '__main__':
