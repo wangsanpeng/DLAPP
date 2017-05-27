@@ -271,6 +271,7 @@ class PoolLayer(Layer):
         self.all_dropout = dict(layer.all_dropout)
         self.all_layers.extend([self.outputs])
 
+
 class FlattenLayer(Layer):
     """
     The :class:`FlattenLayer` class is layer which reshape high-dimension
@@ -326,8 +327,6 @@ class BatchNormLayer(Layer):
     name : a string or None
         An optional name to attach to this layer.
     """
-
-
     def __init__(self, layer, decay=0.9, epsilon=1e-6, act_func=tf.identity, is_train=False,
                  beta_init=tf.zeros_initializer,
                  gamma_init=tf.random_normal_initializer(mean=1.0,stddev=0.002),
@@ -374,13 +373,10 @@ class BatchNormLayer(Layer):
         self.all_params.extend([beta, gamma, global_mean, global_var])
 
 
-
-
-
 if __name__ == '__main__':
     x = tf.Variable([1,2,3])
     l = InputLayer(x, name='l1')
 
-    print l.print_layers()
+    print(l.print_layers())
 
 

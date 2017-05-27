@@ -74,7 +74,7 @@ bool TfModel::Load(const std::string& path) {
   }
   // Clear the proto to save memory space.
   tensorflow_graph.Clear();
-  VLOG(0) << "Tensorflow graph loaded from: " << path;
+  VLOG(0) << "Tensorflow graph loadexd from: " << path;
   return true;
 }
 bool TfModel::Eval(

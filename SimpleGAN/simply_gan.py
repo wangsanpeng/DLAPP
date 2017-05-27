@@ -73,7 +73,7 @@ class GAN(object):
 
     def train(self):
         sess = tf.Session()
-        init = tf.initialize_all_variables()
+        init = tf.global_variables_initializer()
         sess.run(init)
 
         # pretraining discriminator
@@ -117,7 +117,6 @@ class GAN(object):
 
         self._plot_distribution(sess)
 
-
     def _samples(self, sess, num_points=20000, num_bins=100):
         xs = np.linspace(-self.gen.range, self.gen.range, num_points)
         bins = np.linspace(-self.gen.range, self.gen.range, num_bins)
@@ -153,8 +152,12 @@ class GAN(object):
 
     def _plot_distribution(self, session):
         db, pd, pg = self._samples(session)
+
         db_x = np.linspace(-self.gen.range, self.gen.range, len(db))
         pd_x = np.linspace(-self.gen.range, self.gen.range, len(pd))
+
+        print(pd_x)
+        print(pg)
 
         plt.plot(db_x, db, label='boundary')
         plt.plot(pd_x, pd, label='real data distribution')
@@ -220,13 +223,15 @@ def discriminator(input, h_dim, minibatch_layer=True):
 
     return h4
 
+
 def minibatch(input, num_kernels=5, num_dims=3):
     x = linear(input, num_kernels * num_dims, scope='minibatch', stddev=0.02)
     activation = tf.reshape(x, (-1, num_kernels, num_dims))
     diffs = tf.expand_dims(activation, 3) - tf.expand_dims(tf.transpose(activation, [1, 2, 0]), 0)
     abs_diffs = tf.reduce_sum(tf.abs(diffs), 2)
     minibatch_features = tf.reduce_sum(tf.exp(-abs_diffs), 2)
-    return tf.concat(1, [input, minibatch_features])
+    return tf.concat([input, minibatch_features], 1)
+
 
 def optimizer(loss, var_list, initial_learning_rate):
     decay = 0.95
@@ -254,7 +259,7 @@ if __name__ == '__main__':
         num_steps=1000,
         d_steps=2,
         batch_size=16,
-        is_minibatch=True,
+        is_minibatch=False,
         log_every=10
     )
 

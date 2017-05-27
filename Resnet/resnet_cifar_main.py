@@ -32,6 +32,7 @@ def train(model_conf):
     with sess.as_default():
         sess.run(tf.initialize_all_variables())
         summary_writer = tf.train.SummaryWriter(model_conf.train_dir, sess.graph)
+        tf.summary.FileWriter
         # Start the queue runners.
         tf.train.start_queue_runners(sess=sess)
 

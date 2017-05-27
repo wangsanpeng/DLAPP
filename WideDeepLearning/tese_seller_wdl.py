@@ -12,6 +12,7 @@ import numpy as np
 from parse_args import *
 from naive_wdl_learning import *
 
+
 tf.logging.set_verbosity(tf.logging.INFO)
 
 class TeseSellerWDL(object):
@@ -131,7 +132,7 @@ class TeseSellerWDL(object):
                 format_str += '%s,'
         format_str += '%4f,%4f,%d'
         predicted_label = [0 if x[1] > x[0] else 1 for x in prediction_result]
-        print prediction_result
+        print(prediction_result)
         append_cols.append(prediction_result[:,0])
         append_cols.append(prediction_result[:,1])
         append_cols.append(predicted_label)
