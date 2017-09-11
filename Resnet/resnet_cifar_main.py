@@ -57,6 +57,7 @@ def train(model_conf):
                 checkpoint_path = os.path.join(model_conf.model_path, 'model.ckpt')
                 saver.save(sess, checkpoint_path, step)
 
+
 def evaluate(model_conf):
     images, labels = read_cifar.cifar_input(model_conf.dataset,
                                             model_conf.data_path,

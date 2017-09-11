@@ -3,14 +3,16 @@
 import os
 import tensorflow as tf
 from tensorflow.python.framework import graph_util
+from DLAPP.models.slim.nets.vgg import vgg_16
+import numpy as np
 
 dir = os.path.dirname(os.path.realpath(__file__))
 
-tf.stop_gradient()
-def freeze_graph(model_folder):
+def freeze_graph(model_folder, output_node_names):
     """
     freeze saved graph
     :param model_folder:
+    :param output_node_names
     :return:
     """
 
@@ -28,7 +30,7 @@ def freeze_graph(model_folder):
     # 输出结点可以看我们模型的定义
     # 只有定义了输出结点,freeze才会把得到输出结点所必要的结点都保存下来,或者哪些结点可以丢弃
     # 所以,output_node_names必须根据不同的网络进行修改
-    output_node_names = "Accuracy/predictions"
+#    output_node_names = "Accuracy/predictions"
 
     clear_devices = True
     saver = tf.train.import_meta_graph(input_checkpoint + '.meta', clear_devices=clear_devices)
@@ -81,5 +83,40 @@ def load_graph(frozen_graph_filename):
         )
     return graph
 
+
+def load_pretrained_model(model_name, saved_checkpoint):
+    batch_size = 1
+    height, width = 224,224
+    num_classes = 1000
+    inputs = tf.placeholder(tf.float32, shape=(None, height, width, 3))
+
+    logits, end_points = vgg_16(inputs, num_classes)
+#    graph = tf.get_default_graph()
+    saver = tf.train.Saver()
+    with tf.Session() as session:
+#        session.run(tf.global_variables_initializer())
+#        W_fc7_1 = session.run(graph.get_tensor_by_name('vgg_16/fc7/weights:0'))
+#        print(W_fc7_1)
+
+        saver.restore(session, model_name) # load pretrained
+        saver.save(session, saved_checkpoint+'vgg_16')
+        print("Model Saved: %s", model_name)
+
 if __name__ == "__main__":
-    model_folder = "/Users/cheng/Data/pretrained_models/vgg_16/checkpoint"
+    model_name = "/Users/cheng/Data/pretrained_models/vgg_16/vgg_16.ckpt"
+    saved_checkpoint = '/Users/cheng/Data/pretrained_models/vgg_16/vgg_checkpoint/'
+    output_node_names = 'vgg_16/fc8/squeezed'
+
+#    load_pretrained_model(model_name, saved_checkpoint)
+#    freeze_graph(saved_checkpoint, output_node_names)
+
+    graph = load_graph(saved_checkpoint+'frozen_model.pb')
+    for op in graph.get_operations():
+        print(op.name, op.values())
+
+    x = graph.get_tensor_by_name("prefix/Placeholder:0")
+    y = graph.get_tensor_by_name("prefix/vgg_16/fc8/squeezed:0")
+
+    session = tf.Session(graph=graph)
+    res = session.run(y, feed_dict={x: np.random.random((1,224,224,3)) })
+    print(len(res[0]))

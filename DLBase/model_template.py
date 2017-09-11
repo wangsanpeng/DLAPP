@@ -68,7 +68,7 @@ class Model(object):
         return self._loss
 
     @lazy_property
-    def error(self):
+    def error(self) -> object:
         pass
 
     tf.nn.sigmoid_cross_entropy_with_logits()

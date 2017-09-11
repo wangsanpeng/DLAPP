@@ -137,6 +137,7 @@ class ResNet(object):
         elif self.model_conf.optimizer == 'mom':
             optimizer = tf.train.MomentumOptimizer(self.lrn_rate, 0.9)
 
+
         self.train_op = optimizer.minimize(self.loss, global_step=self.global_step, name='train_step')
 
 

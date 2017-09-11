@@ -89,7 +89,7 @@ if __name__ == '__main__':
     visualize_face(x[:10,:,:,0], y[:10,:], is_scale=True)
     x_, y_ = flip_images(x[:10,:,:,0], y[:10,:], direction='vertical')
     visualize_face(x_, y_, is_scale=True)
-    print("")
+    print("Finished")
 
 
 

@@ -1,0 +1,18 @@
+DATA_PATH: /Users/cheng/workspace/code/fashion-mnist/data/fashion
+SUMMARY_DIR: /Users/cheng/tmp/fashion_mnist/summary
+MODEL_SAVER_DIR: /Users/cheng/tmp/fashion_mnist/model
+
+MODE: 'TRAIN' # 'TEST'
+
+NUM_CLASS: 10
+HEIGHT: 28
+WEIGHT: 28
+
+BOTTLENECK: True
+BATCH_SIZE: 128
+NUM_STEPS: 60000
+DEPTH: 10
+GROWTH_RATE: 12
+WEIGHT_DECAY_RATE: 0.0001
+LEARNING_RATE: 0.1
+LR_DECAY_STEPS: 15000

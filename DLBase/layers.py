@@ -5,7 +5,7 @@
 
 import tensorflow as tf
 import numpy as np
-from  activation import leaky_relu
+from DLAPP.DLBase.activation import leaky_relu
 
 # A
 global_names = globals()
@@ -306,6 +306,7 @@ class LeakyReluLayer(Layer):
         self.all_dropout = dict(layer.all_dropout)
         self.all_layers.extend([self.outputs])
 
+
 class BatchNormLayer(Layer):
     """
     Batch normalization on fully-connected or convolutional maps.
@@ -343,6 +344,7 @@ class BatchNormLayer(Layer):
         from tensorflow.python.training import moving_averages
 
         with tf.variable_scope(name) as scope:
+            print(name)
             beta = tf.get_variable('beta', shape=param_shape, initializer=beta_init, trainable=is_train)
             gamma = tf.get_variable('gama', shape=param_shape, initializer=gamma_init, trainable=is_train)
 
