@@ -29,6 +29,7 @@ def load_data(is_test=False):
 
     return x, y
 
+
 def flip_images(images, keypoints, direction='horizon'):
     """
     flip images according to specified direction

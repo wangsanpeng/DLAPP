@@ -1,0 +1,28 @@
+TRAIN_TF_RECORD_PATH: "/Users/cheng/Data/AIChanllenge/scene/ai_challenger_scene_train_20170904/scene_train_images_20170904.tfrecord"
+VALID_TF_RECORD_PATH: "/Users/cheng/Data/AIChanllenge/scene/ai_challenger_scene_validation_20170908/scene_validation_images_20170908.tfrecord"
+
+SUMMARY_DIR: "/Users/cheng/tmp/AIChallenge/model"
+MODEL_SAVER_DIR: "/Users/cheng/tmp/AIChallenge/summary"
+
+MODE: 'TRAIN' # 'TEST'
+
+CUDA_DEVICE: 0
+
+NUM_CLASS: 80
+HEIGHT: 224
+WEIGHT: 224
+
+BOTTLENECK: False
+BATCH_SIZE: 128
+NUM_STEPS: 100000
+VALID_NUM_STEPS: 100
+DEPTH: 37 # only for densenet
+GROWTH_RATE: 32  # only for densenet
+COMPRESSION_TARE: 0.5  # only for densenet
+WEIGHT_DECAY_RATE: 0.0001
+LEARNING_RATE: 0.01
+LR_DECAY_STEPS: 30000
+
+DEBUG: True
+
+

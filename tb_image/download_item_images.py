@@ -73,6 +73,7 @@ def maybe_download():
 #    pool = ThreadPool(10)
 #    res = pool.map(_download_each_image, lines)
 #    pool.close()
+
 #    pool.join()
 
     # download image using multi-processing

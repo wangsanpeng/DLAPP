@@ -69,6 +69,7 @@ def discriminator(input, h_dim, minibatch_layer=True):
 
     return h4
 
+
 def minibatch(input, num_kernels=5, num_dims=3):
     x = linear(input, num_kernels * num_dims, scope='minibatch', stddev=0.02)
     activation = tf.reshape(x, (-1, num_kernels, num_dims))
